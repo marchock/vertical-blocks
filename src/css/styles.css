@@ -1,0 +1,45 @@
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.box {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 -2px;
+    position: relative;
+}
+
+.box > div {
+    padding: 10px 10px;
+}
+ p {
+    background: #DEDEDE;
+    margin: 0;
+    padding: 10px;
+ }
+
+ section {
+    background: #666;
+    overflow: hidden;
+ }
+
+@media screen and (min-width: 480px) {
+    .box {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .box {
+        width: 33.3%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .box {
+        width: 25%;
+    }
+}
