@@ -11,7 +11,7 @@ http://marchock.github.io/vertical-blocks/
 - set container to listen for updates
 
 
-
+# javascript
 ```
 
 "Defualt properties"
@@ -50,5 +50,31 @@ var verticleBlocks = new VerticleBlocks({
             }
         ]
     });
+
+```
+
+# CSS
+```
+CSS media queries "must" match javascript breakpoints
+
+
+@media screen and (min-width: 480px) {
+    .box {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .box {
+        width: 33.3%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .box {
+        width: 25%;
+    }
+}
+
 
 ```
