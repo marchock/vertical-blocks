@@ -2,6 +2,21 @@
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
+    background: #666;
+    overflow: hidden;
+    -webkit-transition: transform3d(0,0,0);
+}
+
+/*img {
+    display: none;
+}*/
+
+.btn {
+    padding: 20px;
+    background-color: grey;
+    margin: 20px;
+    cursor: pointer;
+    display:inline-block;
 }
 
 .box {
@@ -10,21 +25,27 @@
     vertical-align: top;
     margin: 0 -2px;
     position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    -webkit-transition: opacity 0.5s ease-out;
 }
 
 .box > div {
-    padding: 10px 10px;
+    margin: 10px 10px;
+    background: #DEDEDE;
+    border-radius: 10px;
+    overflow: hidden;
 }
  p {
-    background: #DEDEDE;
     margin: 0;
     padding: 10px;
  }
 
- section {
-    background: #666;
-    overflow: hidden;
+ .btnLoadMore {
+    position: relative;
+    display: inline-block;
  }
+
 
 @media screen and (min-width: 480px) {
     .box {
