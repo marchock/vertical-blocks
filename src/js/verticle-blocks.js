@@ -65,12 +65,7 @@ VerticleBlocks.prototype.init = function () {
 
 VerticleBlocks.prototype.htmlModified = function () {
 
-    console.log("htmlModified")
-
-
     this.$blocks = this.getBlocks();
-
-    console.log("htmlModified", this.numberOfBlocks, this.$blocks.length)
 
     if (this.numberOfBlocks === this.$blocks.length) {
         // block content updated
@@ -88,7 +83,6 @@ VerticleBlocks.prototype.htmlModified = function () {
             this.loadImages();
         } else {
             this.numberOfBlocks = this.$blocks.length;
-            console.log("IMAGE LOADER OFF")
             this.updateColumn(this.getWidth());
         }
     }
