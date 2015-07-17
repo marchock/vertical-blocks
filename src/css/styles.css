@@ -4,20 +4,7 @@
     margin: 0 auto;
     background: #666;
     overflow: hidden;
-    text-align: center;
     -webkit-transition: transform3d(0,0,0);
-}
-
-img {
-    display: none;
-}
-
-.btn {
-    padding: 20px;
-    background-color: grey;
-    margin: 20px;
-    cursor: pointer;
-    display:inline-block;
 }
 
 .box {
@@ -64,4 +51,19 @@ img {
     .box {
         width: 25%;
     }
+}
+
+
+
+
+/*img {
+    display: none;
+}*/
+
+.btn {
+    padding: 20px;
+    background-color: grey;
+    margin: 20px;
+    cursor: pointer;
+    display:inline-block;
 }
