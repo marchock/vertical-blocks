@@ -4,12 +4,13 @@
     margin: 0 auto;
     background: #666;
     overflow: hidden;
+    text-align: center;
     -webkit-transition: transform3d(0,0,0);
 }
 
-/*img {
+img {
     display: none;
-}*/
+}
 
 .btn {
     padding: 20px;

@@ -69,10 +69,13 @@ VerticleBlocks.prototype.htmlModified = function () {
 
     if (this.numberOfBlocks === this.$blocks.length) {
         // block content updated
+
+        // this is not being used
+        // TODO: investiget and remove the first if statement if not needed
         this.setup();
     } else if (this.$blocks.length === 0) {
 
-        // blocks have been deleted
+        // blocks deleted
         this.numberOfBlocks = 0;
         this.loadingBlocks = false;
 
