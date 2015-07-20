@@ -7,10 +7,53 @@
 
 
 
+// NOTE: TEST network connection
 
-// might need a class name for the images that are require to load before running vertical blocks
+// **********************************************************************************************
+// Test CASE
 
-// if images are background image then image loader not needed , create a test
+// TEST 1
+        //listenForContainer: false,
+        //imageLoader: false,
+
+
+// container height should be incorrect
+// blocks should be position incorrectly 
+// add more blocks should be position incorrectly 
+
+
+
+// click on update blocks to fix layout
+// browser resize should fix layout 
+
+
+
+
+// TEST 2
+        //listenForContainer: true,
+        //imageLoader: false,
+
+
+// TEST 3
+        //listenForContainer: false,
+        //imageLoader: true,
+
+// TEST 4
+        //listenForContainer: true,
+        //imageLoader: true,
+
+
+// TEST 5
+        //edit classnames
+
+
+// TEST 6
+        //edit break points
+
+
+// **********************************************************************************************
+
+
 
 function VerticleBlocks(options) {
 
@@ -51,13 +94,20 @@ VerticleBlocks.prototype.containerUpdated = function () {
 VerticleBlocks.prototype.init = function () {
     this.setUpBreakPoints();
 
+    // Listen for adding and removing of blocks inside the container
     if (this.settings.listenForContainer) {
         this.containerUpdated();
+
     } else {
-        
+
+        // Load images before positioning blocks
         if (this.settings.imageLoader) {
             this.loadImages();
+
+        // No image loading
         } else {
+            this.$blocks = this.getBlocks();
+            this.numberOfBlocks = this.$blocks.length;
             this.updateColumn(this.getWidth());
         }
     }
@@ -67,20 +117,26 @@ VerticleBlocks.prototype.htmlModified = function () {
 
     this.$blocks = this.getBlocks();
 
+    // TODO: remove if not needed
     if (this.numberOfBlocks === this.$blocks.length) {
         // block content updated
         this.setup();
+
+    // if no blocks inside the container 
     } else if (this.$blocks.length === 0) {
 
         // blocks have been deleted
         this.numberOfBlocks = 0;
         this.loadingBlocks = false;
 
+    // Number of blocks inside the container has changed
     } else {
 
+        // Load images before positioning blocks
         if (this.settings.imageLoader) {
-            // new blocks added
             this.loadImages();
+
+        // No image loading
         } else {
             this.numberOfBlocks = this.$blocks.length;
             this.updateColumn(this.getWidth());
@@ -100,7 +156,7 @@ VerticleBlocks.prototype.loadImages = function () {
 
     for (i = this.numberOfBlocks; i < eof; i += 1) {
 
-        img = this.$blocks[i].querySelector(String(this.settings.classname.img));
+        img = this.$blocks[i].querySelector(this.settings.classname.img);
 
         // is there an image 
         if (img) {
