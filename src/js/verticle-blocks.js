@@ -134,6 +134,7 @@ VerticleBlocks.prototype.htmlModified = function () {
 
         // Load images before positioning blocks
         if (this.settings.imageLoader) {
+            this.numberOfBlocks = this.numberOfBlocks > this.$blocks.length ? 0 : this.numberOfBlocks;
             this.loadImages();
 
         // No image loading
