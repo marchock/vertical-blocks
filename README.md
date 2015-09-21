@@ -1,4 +1,4 @@
-verticle-blocks.js
+vertical-blocks.js
 =====
 A light weight plugin with no dependencies that positions html elements to fit vertically 
 
@@ -16,7 +16,7 @@ http://marchock.github.io/vertical-blocks/
 
 "Defualt properties"
 
-var verticleBlocks = new VerticleBlocks({
+var verticalBlocks = new VerticalBlocks({
 
         listenForContainer: false,
 
