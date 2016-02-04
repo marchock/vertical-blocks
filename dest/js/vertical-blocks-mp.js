@@ -1,0 +1,1 @@
+var test=function(){return{init:function(n){},extend:function(n,o){var t=n;return Object.keys(o).forEach(function(n){t[n]=o[n]}),t},defaultSettings:function(){return{listenForContainer:!0,imageLoader:!0,classname:{img:"img",container:".container",block:".box"},breakPoints:[{position:0,columns:1},{position:480,columns:2},{position:1024,columns:3},{position:1280,columns:4}]}}}}();

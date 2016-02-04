@@ -86,7 +86,7 @@ VerticalBlocks.prototype.containerUpdated = function () {
             if (!me.loadingBlocks) {
                 me.loadingBlocks = true;
                 me.htmlModified();
-            }  
+            }
         }
     }, 100);
 };
@@ -134,13 +134,17 @@ VerticalBlocks.prototype.htmlModified = function () {
 
         // Load images before positioning blocks
         if (this.settings.imageLoader) {
-            this.numberOfBlocks = this.numberOfBlocks > this.$blocks.length ? 0 : this.numberOfBlocks;
-            this.loadImages();
 
+            // fixed app from breaking
+            // it was stuck on loadingBlocks = true 
+            // stopping app from loading images
+            this.numberOfBlocks = this.numberOfBlocks > this.$blocks.length ? 0 : this.numberOfBlocks;
+
+            this.loadImages();
         // No image loading
         } else {
-            this.numberOfBlocks = this.$blocks.length;
             this.updateColumn(this.getWidth());
+            this.numberOfBlocks = this.$blocks.length;
         }
     }
 };
@@ -153,7 +157,7 @@ VerticalBlocks.prototype.loadImages = function () {
         eof = this.$blocks.length,
         imgLoaded = this.numberOfBlocks,
         img,
-        src = "";
+        src = '';
 
     for (i = this.numberOfBlocks; i < eof; i += 1) {
 
@@ -171,18 +175,16 @@ VerticalBlocks.prototype.loadImages = function () {
             // Safari and IOS fix 
             // reseting the src to an empty string and reasigning the image src
             // stops the image loading from sticking (use console logs to test)
-            img.src = "";
+            img.src = '';
 
             // add event listener to image to know if image is loaded 
-            img.onload = function (e) {
-
-                imgLoaded = me.imagesLoaded(imgLoaded, eof, "Loaded");
+            img.onload = function () {
+                imgLoaded = me.imagesLoaded(imgLoaded, eof, 'Loaded');
             };
 
             // add event listener to image to know if image has failed 
-            img.onerror = function (e) {
-
-                imgLoaded = me.imagesLoaded(imgLoaded, eof, "Error");
+            img.onerror = function () {
+                imgLoaded = me.imagesLoaded(imgLoaded, eof, 'Error');
             };
 
             // add image src
@@ -190,7 +192,7 @@ VerticalBlocks.prototype.loadImages = function () {
 
         } else {
             // no image 
-            imgLoaded = me.imagesLoaded(imgLoaded, eof, "None");
+            imgLoaded = me.imagesLoaded(imgLoaded, eof, 'None');
         }
     }
 
@@ -212,7 +214,11 @@ VerticalBlocks.prototype.resetValues = function () {
         eof = this.$blocks.length;
 
     for (i = 0; i < eof; i += 1) {
-        this.$blocks[i].style.top = "0px";
+
+        if(!!this.$blocks[i]){
+
+            this.$blocks[i].style.top = '0';
+        }
     }
 };
 
@@ -240,9 +246,6 @@ VerticalBlocks.prototype.createColumnsArray = function (i, eof, ele) {
         style,
         height = 0;
 
-
-    function updateArray() {}
-
     for (i = 0; i < eof; i += 1) {
 
         array[col] = array[col] || [];
@@ -252,11 +255,11 @@ VerticalBlocks.prototype.createColumnsArray = function (i, eof, ele) {
         // get margin top and bottom height
         margin = style.marginTop ? (parseFloat(style.marginTop) + parseFloat(style.marginBottom)) : 0;
 
-        if (typeof parseFloat(style.height) === "Number") {
+        if (typeof parseFloat(style.height) === 'number') {
             height = parseFloat(style.height);
         } else {
             // IE
-            height = parseFloat(style.getPropertyValue("height"));
+            height = parseFloat(style.getPropertyValue('height'));
         }
 
         array[col].push({
@@ -267,6 +270,7 @@ VerticalBlocks.prototype.createColumnsArray = function (i, eof, ele) {
 
         col = col > (this.columns - 2) ? 0 : (col += 1);
     }
+
     return array;
 };
 
@@ -282,22 +286,25 @@ VerticalBlocks.prototype.getAbsoluteHeight = function (columnsArray) {
     // column loop
     for (c = 0; c < this.columns; c += 1) {
 
-        eof = columnsArray[c].length;
-        h = 0;
+        if(!!columnsArray[c]){
 
-        // row loop
-        for (i = 0; i < eof; i += 1) {
-            h += (columnsArray[c][i].height + columnsArray[c][i].margin);
-        }
+            eof = columnsArray[c].length;
+            h = 0;
 
-        // find the tallest column and asign the height 
-        // to the container
-        if (totalHeight < h) {
-            totalHeight = h;
+            // row loop
+            for (i = 0; i < eof; i += 1) {
+                h += (columnsArray[c][i].height + columnsArray[c][i].margin);
+            }
+
+            // find the tallest column and asign the height 
+            // to the container
+            if (totalHeight < h) {
+                totalHeight = h;
+            }
         }
     }
 
-    this.$container.style.height = totalHeight + "px";
+    this.$container.style.height = totalHeight + 'px';
 };
 
 VerticalBlocks.prototype.updateBlocks = function () {
@@ -328,21 +335,26 @@ VerticalBlocks.prototype.setup = function () {
     // column loop
     for (c = 0; c < this.columns; c += 1) {
 
-        eof = columnsArray[c].length;
+        if(!!columnsArray[c]){
 
-        // row loop
-        for (i = 0; i < eof; i += 1) {
+            eof = columnsArray[c].length;
 
-            // the first row does not require a top position
-            if (i > 0) {
-                columnsArray[c][i].ele.style.top = columnsArray[c][i - 1].height - maxHeight[i - 1] + "px";
+            // row loop
+            for (i = 0; i < eof; i += 1) {
 
-                columnsArray[c][i].height = columnsArray[c][i].height + (columnsArray[c][i - 1].height - maxHeight[i - 1]);
+                // the first row does not require a top position
+                if (i > 0) {
+                    columnsArray[c][i].ele.style.top = columnsArray[c][i - 1].height - maxHeight[i - 1] + 'px';
+
+                    columnsArray[c][i].height = columnsArray[c][i].height + (columnsArray[c][i - 1].height - maxHeight[i - 1]);
+                }
+
+                columnsArray[c][i].ele.style.opacity = '1';
             }
+            this.loadingBlocks = false;
 
-            columnsArray[c][i].ele.style.opacity = "1";
         }
-        this.loadingBlocks = false;
+
     }
 };
 

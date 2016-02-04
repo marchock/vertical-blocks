@@ -331,7 +331,7 @@
                 </p>
             </div>
         </div>
-        
+
 
     </div>
 
@@ -339,12 +339,19 @@
     <div class="btn btnLoadMore">ADD MORE</div>
     <div class="btn update">UPDATE BLOCKS</div>
     <div class="btn delete">DELETE</div>
-    
-    <script type="text/javascript" src="js/vertical-blocks.js"></script>
-    
+
+    <script type="text/javascript" src="js/vertical-blocks-mp.js"></script>
     <script type="text/javascript">
 
-        var verticleBlocks = new VerticalBlocks({});
+        window.onload = function () {
+
+
+            console.log("WORKIGN", VerticalBlocks)
+
+
+        var blocks = new VerticalBlocks();
+        blocks.init({});
+
         var btn = document.querySelector(".btnLoadMore");
 
         function addMore() {
@@ -388,6 +395,15 @@
             var container = document.querySelector(".container");
             container.innerHTML = "";
         });
+
+
+
+
+
+
+        }
+
+
 
     </script>
 </body>
