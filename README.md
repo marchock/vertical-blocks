@@ -6,7 +6,7 @@ http://marchock.github.io/vertical-blocks/
 
 
 ###Features
-- specify breakpoints 
+- specify breakpoints
 - specify classNames
 - set container to listen for updates
 
