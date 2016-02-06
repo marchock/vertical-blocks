@@ -3,7 +3,6 @@
 
 
 var VerticalBlocks = (function() {
-
   // this object is used to store private variables and methods across multiple instantiations
     var settings = null,
 
@@ -21,10 +20,10 @@ var VerticalBlocks = (function() {
 
         bwbp = [];
 
-    function VerticalBlocks() {
+    function VerticalBlocks(options) {
 
         this.init = function (options) {
-            console.log("WORKING")
+            console.log("WORKING", this)
             settings = this.extend(this.defaultSettings(), options);
             container = document.querySelector(settings.classname.container);
             blocks = this.getBlocks();
@@ -400,8 +399,8 @@ var VerticalBlocks = (function() {
                 ]
             };
         };
+        // init the module
+        this.init(options);
     }
-
     return VerticalBlocks;
-
 })();

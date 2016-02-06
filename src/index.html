@@ -331,8 +331,6 @@
                 </p>
             </div>
         </div>
-
-
     </div>
 
 
@@ -341,70 +339,57 @@
     <div class="btn delete">DELETE</div>
 
     <script type="text/javascript" src="js/vertical-blocks-mp.js"></script>
+
     <script type="text/javascript">
 
         window.onload = function () {
 
+            var verticleBlocks = new VerticalBlocks({});
 
-            console.log("WORKIGN", VerticalBlocks)
+            var btn = document.querySelector(".btnLoadMore");
 
+            function addMore() {
 
-        var blocks = new VerticalBlocks();
-        blocks.init({});
+                var container = document.querySelector(".container");
 
-        var btn = document.querySelector(".btnLoadMore");
+                for (i = 0; i < 10; i += 1) {
 
-        function addMore() {
+                    var div1 = document.createElement("div");
+                    var div2 = document.createElement("div");
+                    var p = document.createElement("p");
+                    var img = document.createElement("img");
+                    var t = document.createTextNode("Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin  treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32."); 
 
-            var container = document.querySelector(".container");
+                    div1.setAttribute("class", "box");
+                    img.setAttribute("src", "http://lorempixel.com/400/400/city/" + i +"/");
+                    img.setAttribute("width", "100%");
+                    p.appendChild(t);
 
-            for (i = 0; i < 10; i += 1) {
-
-                var div1 = document.createElement("div");
-                var div2 = document.createElement("div");
-                var p = document.createElement("p");
-                var img = document.createElement("img");
-                var t = document.createTextNode("Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin  treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32."); 
-
-                div1.setAttribute("class", "box");
-                img.setAttribute("src", "http://lorempixel.com/400/400/city/" + i +"/");
-                img.setAttribute("width", "100%");
-                p.appendChild(t);
-
-                div2.appendChild(img)
-                div2.appendChild(p)
-                div1.appendChild(div2);
-                container.appendChild(div1);
+                    div2.appendChild(img)
+                    div2.appendChild(p)
+                    div1.appendChild(div2);
+                    container.appendChild(div1);
+                }
             }
+
+            btn.addEventListener("click", function () {
+                addMore();
+            });
+
+            var update = document.querySelector(".update");
+
+            update.addEventListener("click", function () {
+                verticleBlocks.updateBlocks();
+            });
+
+            var deleteEle = document.querySelector(".delete");
+
+            deleteEle.addEventListener("click", function () {
+                console.log("DELETE IMAGE")
+                var container = document.querySelector(".container");
+                container.innerHTML = "";
+            });
         }
-
-        btn.addEventListener("click", function () {
-            addMore();
-        });
-
-        var update = document.querySelector(".update");
-
-        update.addEventListener("click", function () {
-            verticleBlocks.updateBlocks();
-        });
-
-        var deleteEle = document.querySelector(".delete");
-
-        deleteEle.addEventListener("click", function () {
-            console.log("DELETE IMAGE")
-            var container = document.querySelector(".container");
-            container.innerHTML = "";
-        });
-
-
-
-
-
-
-        }
-
-
-
     </script>
 </body>
 
