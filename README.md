@@ -1,8 +1,6 @@
 vertical-blocks.js
 =====
-A light weight plugin with no dependencies that positions html elements to fit vertically 
-
-http://marchock.github.io/vertical-blocks/
+A lightweight plugin with no dependencies that positions html elements to fit vertically 
 
 
 ###Features
